@@ -38,6 +38,11 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation ("com.github.bumptech.glide:glide:4.12.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
-    implementation ("com.google.firebase:firebase-auth:22.0.0")
     implementation("com.google.android.gms:play-services-auth:20.7.0")
+    implementation ("com.android.volley:volley:1.2.1")
+    implementation ("com.google.android.gms:play-services-auth:20.0.0")
+    implementation ("com.google.android.gms:play-services-identity:18.0.0")
+    implementation ("com.google.android.gms:play-services-auth:19.2.0")
+
+
 }

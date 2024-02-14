@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class SecondActivity extends AppCompatActivity implements View.OnClickListener {
-    Button b1;
+    Button b1,b2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +16,7 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_second);
         b1=(Button) findViewById(R.id.button1);
         b1.setOnClickListener(this);
+
     }
 
     @Override
@@ -25,6 +26,8 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
             Intent i = new Intent(SecondActivity.this, Login.class);
             startActivity(i);
         }
+
+
 
     }
 }
