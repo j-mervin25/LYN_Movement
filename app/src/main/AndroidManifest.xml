@@ -23,6 +23,30 @@
             android:name=".Profile"
             android:exported="false" />
         <activity
+            android:name=".tamildashboard"
+            android:exported="false" />
+        <activity
+            android:name=".liveclasses"
+            android:exported="false" />
+        <activity
+            android:name=".register"
+            android:exported="false" />
+        <activity
+            android:name=".profile"
+            android:exported="false" />
+        <activity
+            android:name=".eleventhmeet"
+            android:exported="false" />
+        <activity
+            android:name=".tenthmeet"
+            android:exported="false" />
+        <activity
+            android:name=".classes"
+            android:exported="false" />
+        <activity
+            android:name=".meet"
+            android:exported="false" />
+        <activity
             android:name=".dashboard"
             android:exported="false" />
         <activity
@@ -40,6 +64,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
