@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Blue"
+    android:orientation="vertical"
+    tools:context=".ProfileActivity">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="300dp"
+        android:layout_height="610dp"
+        android:layout_gravity="center"
+        android:layout_margin="70dp"
+        android:background="@drawable/border"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="20dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <ImageView
+                android:id="@+id/profileImageView"
+                android:layout_width="78dp"
+                android:layout_height="76dp"
+                android:background="@color/Blue"
+                android:src="@drawable/baseline_account_box_24"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:text="Email"
+                android:textSize="17dp"
+                android:padding="13dp"
+                android:drawablePadding="8dp"
+                android:background="@drawable/border"
+                android:textStyle="bold"
+                android:textColorHighlight="@color/cardview_dark_background"/>
+
+            <TextView
+                android:layout_marginTop="25dp"
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:text="First Name"
+                android:textSize="17dp"
+                android:padding="13dp"
+                android:drawablePadding="8dp"
+                android:background="@drawable/border"
+                android:textStyle="bold"
+                android:textColorHighlight="@color/cardview_dark_background"/>
+
+            <TextView
+                android:layout_marginTop="25dp"
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:text="Last Name"
+                android:textSize="17dp"
+                android:padding="13dp"
+                android:drawablePadding="8dp"
+                android:background="@drawable/border"
+                android:textStyle="bold"
+                android:textColorHighlight="@color/cardview_dark_background"/>
+
+            <TextView
+                android:layout_marginTop="25dp"
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:text="Medium"
+                android:textSize="17dp"
+                android:padding="13dp"
+                android:drawablePadding="8dp"
+                android:background="@drawable/border"
+                android:textStyle="bold"
+                android:textColorHighlight="@color/cardview_dark_background"/>
+
+            <TextView
+                android:layout_marginTop="25dp"
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:text="Class"
+                android:textSize="17dp"
+                android:padding="13dp"
+                android:drawablePadding="8dp"
+                android:background="@drawable/border"
+                android:textStyle="bold"
+                android:textColorHighlight="@color/cardview_dark_background"/>
+
+            <LinearLayout
+                android:layout_width="256dp"
+                android:layout_height="59dp"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/button1"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="50dp"
+                    android:background="@drawable/round"
+                    android:contentDescription="Back Button"
+                    android:src="@drawable/baseline_arrow_back_24" />
+
+                <ImageButton
+                    android:id="@+id/button2"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="30dp"
+                    android:background="@drawable/round"
+                    android:contentDescription="Dashboard"
+                    android:src="@drawable/baseline_dashboard_24" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
