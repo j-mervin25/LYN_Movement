@@ -74,10 +74,10 @@ public class ProfileActivity extends AppCompatActivity {
 
                 String medium = t4.getText().toString().trim();
                 if ("Medium: Tamil".equalsIgnoreCase(medium)) {
-                    Intent intent = new Intent(ProfileActivity.this, dashboard.class);
+                    Intent intent = new Intent(ProfileActivity.this, tamildashboard.class);
                     startActivity(intent);
                 } else if ("Medium: English".equalsIgnoreCase(medium)) {
-                    Intent intent = new Intent(ProfileActivity.this, SecondActivity.class);
+                    Intent intent = new Intent(ProfileActivity.this, dashboard.class);
                     startActivity(intent);
                 } else {
                     // Handle other cases if needed
