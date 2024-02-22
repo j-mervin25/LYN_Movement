@@ -31,7 +31,7 @@ import android.graphics.Typeface;
 public class ProfileActivity extends AppCompatActivity {
     TextView t1;
     private static final String PHP_SCRIPT_URL = "https://trial.gssmp.org/MobileApp/Select.php?query=SELECT * FROM Students";
-    private TextView t2, t3, t4, t5;
+    private TextView t2, t3, t4, t5, t6, t7;
     ImageButton b1,b2;
 
     ImageView profileImageView;
@@ -45,6 +45,8 @@ public class ProfileActivity extends AppCompatActivity {
         t3 = findViewById(R.id.textView2);
         t4 = findViewById(R.id.textView3);
         t5 = findViewById(R.id.textView4);
+        t6 = findViewById(R.id.textView5);
+        t7 = findViewById(R.id.textView6);
 
         b1 = findViewById(R.id.button1);
         b2 = findViewById(R.id.button2);
@@ -157,6 +159,8 @@ public class ProfileActivity extends AppCompatActivity {
                             String lastName = jsonObject.getString("LastName");
                             String medium = jsonObject.getString("Medium");
                             String classInfo = jsonObject.getString("Class");
+                            String sno = jsonObject.getString("SNo");
+                            String mentorID = jsonObject.getString("MentorID");
 
 
                             // Update TextViews with details
@@ -164,6 +168,8 @@ public class ProfileActivity extends AppCompatActivity {
                             t3.setText("Last Name: " + lastName);
                             t4.setText("Medium: " + medium);
                             t5.setText("Class: " + classInfo);
+                            t6.setText("SNo: " + sno);
+                            t7.setText("Mentor ID: " + mentorID);
                             break;
                         }
                     }

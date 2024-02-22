@@ -10,10 +10,10 @@
     tools:context=".ProfileActivity">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="300dp"
-        android:layout_height="610dp"
+        android:layout_width="330dp"
+        android:layout_height="650dp"
         android:layout_gravity="center"
-        android:layout_margin="70dp"
+        android:layout_margin="50dp"
         android:background="@drawable/border"
         app:cardCornerRadius="30dp"
         app:cardElevation="20dp">
@@ -35,20 +35,33 @@
                 android:layout_gravity="center"/>
 
             <TextView
-                android:layout_marginTop="20dp"
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/border"
+                android:drawablePadding="8dp"
+                android:padding="13dp"
+                android:text="SNO"
+                android:textColorHighlight="@color/cardview_dark_background"
+                android:textSize="17dp"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
-                android:text="Email"
-                android:textSize="17dp"
-                android:padding="13dp"
-                android:drawablePadding="8dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/border"
-                android:textStyle="bold"
-                android:textColorHighlight="@color/cardview_dark_background"/>
+                android:drawablePadding="8dp"
+                android:padding="13dp"
+                android:text="Email"
+                android:textColorHighlight="@color/cardview_dark_background"
+                android:textSize="17dp"
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="10dp"
                 android:id="@+id/textView1"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
@@ -61,7 +74,7 @@
                 android:textColorHighlight="@color/cardview_dark_background"/>
 
             <TextView
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="10dp"
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
@@ -74,7 +87,7 @@
                 android:textColorHighlight="@color/cardview_dark_background"/>
 
             <TextView
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="10dp"
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
@@ -87,7 +100,7 @@
                 android:textColorHighlight="@color/cardview_dark_background"/>
 
             <TextView
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="10dp"
                 android:id="@+id/textView4"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
@@ -99,10 +112,23 @@
                 android:textStyle="bold"
                 android:textColorHighlight="@color/cardview_dark_background"/>
 
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:text="Mentor Id"
+                android:textSize="17dp"
+                android:padding="13dp"
+                android:drawablePadding="8dp"
+                android:background="@drawable/border"
+                android:textStyle="bold"
+                android:textColorHighlight="@color/cardview_dark_background"/>
+
             <LinearLayout
                 android:layout_width="256dp"
                 android:layout_height="59dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
                 <ImageButton
