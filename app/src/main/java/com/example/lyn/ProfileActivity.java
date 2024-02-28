@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -170,7 +171,13 @@ public class ProfileActivity extends AppCompatActivity {
                             t5.setText("Class: " + classInfo);
                             t6.setText("SNo: " + sno);
                             t7.setText("Mentor ID: " + mentorID);
-                            break;
+
+
+                            DataManager.getInstance().setClassInfo(classInfo);
+                            DataManager.getInstance().setMedium(medium);
+
+                            Log.d("ProfileActivity", "Class Info: " + classInfo);
+                            Log.d("ProfileActivity", "Medium: " + medium);
                         }
                     }
                 } catch (JSONException e) {

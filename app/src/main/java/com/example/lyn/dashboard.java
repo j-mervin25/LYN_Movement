@@ -2,13 +2,20 @@ package com.example.lyn;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,14 +28,34 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+
 public class dashboard extends AppCompatActivity {
+
+    public String eventType;
+
+    ImageView i1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+            setContentView(R.layout.activity_dashboard);
+
+
+
         FetchDataAsyncTask fetchDataAsyncTask = new FetchDataAsyncTask();
         fetchDataAsyncTask.execute();
+
+        i1= findViewById(R.id.imageView2);
+        i1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(dashboard.this, Classrooms.class);
+                startActivity(i);
+
+            }
+        });
+
     }
 
     private class FetchDataAsyncTask extends AsyncTask<Void, Void, String> {
@@ -78,6 +105,7 @@ public class dashboard extends AppCompatActivity {
                         String eventType = jsonObject.getString("type"); // Assuming the eventType is obtained from JSON
                         String eventName = jsonObject.getString("EventName");
                         String eventTime = jsonObject.getString("EventTime");
+                        String meetingurl = jsonObject.getString("URL");
 
                         // Create a new table row
                         final TableRow tableRow = new TableRow(dashboard.this);
@@ -111,11 +139,29 @@ public class dashboard extends AppCompatActivity {
                         tableRow.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                // Perform your action here when the TableRow is clicked
-                                // For example, you can display a Toast message
                                 TextView eventNameTextView = (TextView) tableRow.getChildAt(0); // Assuming eventName is the first column
                                 String eventName = eventNameTextView.getText().toString();
-                                Toast.makeText(dashboard.this, "Clicked on event: " + eventName, Toast.LENGTH_SHORT).show();
+
+                                // Get the eventType from the TableRow's background color
+                                int color = ((ColorDrawable) tableRow.getBackground()).getColor();
+                                String eventType = getEventType(color);
+
+                                // Start the corresponding activity based on eventType
+                                if (eventType.equals("C")) {
+                                    // Start Classroom activity
+                                    if(!meetingurl.isEmpty()){
+                                        redirectToGoogleMeet(meetingurl);
+                                    }else{
+                                        Toast.makeText(dashboard.this,"Meeting is not available for the event :"+eventName, Toast.LENGTH_SHORT).show();
+                                    }
+
+                                } else if (eventType.equals("A")) {
+                                    // Start Assignment activity
+                                    startActivity(new Intent(dashboard.this, ProfileActivity.class));
+                                } else if (eventType.equals("E")) {
+                                    // Start Exam activity
+                                    startActivity(new Intent(dashboard.this, ProfileActivity.class));
+                                }
                             }
                         });
                     }
@@ -126,6 +172,26 @@ public class dashboard extends AppCompatActivity {
             } else {
                 Toast.makeText(dashboard.this, "Failed to fetch data", Toast.LENGTH_SHORT).show();
             }
+        }
+    }
+    private void redirectToGoogleMeet(String meetingurl){
+        try{
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW,Uri.parse(meetingurl));
+            startActivity(browserIntent);
+        }catch(ActivityNotFoundException e){
+            Toast.makeText(dashboard.this, "No app can handle this action", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private String getEventType(int color) {
+        if (color == getResources().getColor(android.R.color.holo_purple)) {
+            return "C"; // Classroom
+        } else if (color == getResources().getColor(android.R.color.holo_blue_light)) {
+            return "A"; // Assignment
+        } else if (color == getResources().getColor(android.R.color.holo_orange_light)) {
+            return "E"; // Exam
+        } else {
+            return ""; // Unknown
         }
     }
 }
