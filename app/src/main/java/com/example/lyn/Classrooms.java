@@ -25,8 +25,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class Classrooms extends AppCompatActivity {
-    private String classInfo;
-    private String medium;
+
+    String  retrievedClass;
+    String retrievedMedium;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,19 +35,19 @@ public class Classrooms extends AppCompatActivity {
         setContentView(R.layout.activity_classrooms);
 
 // Retrieve classInfo and medium from DataManager
-        classInfo = DataManager.getInstance().getClassInfo();
-        medium = DataManager.getInstance().getMedium();
+        retrievedClass = DataManager.getInstance().getRetrievedClass();
+        retrievedMedium = DataManager.getInstance().getRetrievedMedium();
 
         // Log the retrieved values to ensure they are correct
-        Log.d("DashboardActivity", "Class Info: " + classInfo);
-        Log.d("DashboardActivity", "Medium: " + medium);
+        Log.d("DashboardActivity", "Class Info: " + retrievedClass);
+        Log.d("DashboardActivity", "Medium: " + retrievedMedium);
 
         // Display classInfo and medium in TextViews
         TextView classInfoTextView = findViewById(R.id.classInfoTextView);
         TextView mediumTextView = findViewById(R.id.mediumTextView);
 
-        classInfoTextView.setText("Class Info: " + classInfo);
-        mediumTextView.setText("Medium: " + medium);
+        classInfoTextView.setText("Class Info: " + retrievedClass);
+        mediumTextView.setText("Medium: " + retrievedMedium);
 
 
         // Call AsyncTask to fetch data
@@ -94,8 +95,8 @@ public class Classrooms extends AppCompatActivity {
                     TableLayout tableLayout = findViewById(R.id.tableLayout);
 
                     // Define colors
-                    int blueColor = getResources().getColor(R.color.smokeday);
-                    int pinkColor = getResources().getColor(R.color.mistday);
+                    int blueColor = getResources().getColor(R.color.material);
+                    int pinkColor = getResources().getColor(R.color.onion_color);
 
                     // Track row index for alternating colors
                     int rowIndex = 0;
@@ -115,9 +116,12 @@ public class Classrooms extends AppCompatActivity {
                         String endTime = jsonObject.getString("EndTime");
                         String academicYear = jsonObject.getString("AcademicYear");
 
-                        if (classInfo.equals(classID) && Classrooms.this.medium.equals(medium)) {
+                        if (retrievedClass.equals(classID) && Classrooms.this.retrievedMedium.equals(medium)) {
                             // Create TableRow and TextViews for each data row
                             TableRow row = new TableRow(Classrooms.this);
+
+
+                            row.setMinimumHeight(80);
 
                             // Set background color based on row index
                             if (rowIndex % 2 == 0) {
@@ -126,21 +130,23 @@ public class Classrooms extends AppCompatActivity {
                                 row.setBackgroundColor(pinkColor);
                             }
 
+                            // Create TextViews for each column
                             TextView classSubjectNameTextView = new TextView(Classrooms.this);
                             classSubjectNameTextView.setText(classSubjectName);
-
-                            TextView meetingIDTextView = new TextView(Classrooms.this);
-                            meetingIDTextView.setText(meetingID);
+                            classSubjectNameTextView.setPadding(10, 10, 10, 10); // Set padding for the TextView
 
                             TextView startTimeTextView = new TextView(Classrooms.this);
                             startTimeTextView.setText(startTime);
+                            startTimeTextView.setPadding(10, 10, 10, 10); // Set padding for the TextView
 
                             TextView endTimeTextView = new TextView(Classrooms.this);
                             endTimeTextView.setText(endTime);
+                            endTimeTextView.setPadding(10, 10, 10, 10); // Set padding for the TextView
 
                             TableRow emptyRow = new TableRow(Classrooms.this);
                             emptyRow.setMinimumHeight(20); // Adjust the height of the empty row as needed
                             tableLayout.addView(emptyRow);
+
 
                             // Add click listener to the row
                             row.setOnClickListener(new View.OnClickListener() {
@@ -155,9 +161,9 @@ public class Classrooms extends AppCompatActivity {
                             });
 
                             row.addView(classSubjectNameTextView);
-                            row.addView(meetingIDTextView);
                             row.addView(startTimeTextView);
                             row.addView(endTimeTextView);
+
 
                             // Increment row index
                             rowIndex++;

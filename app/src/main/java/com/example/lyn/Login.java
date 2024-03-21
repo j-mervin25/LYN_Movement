@@ -35,11 +35,15 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.tasks.Task;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Login extends AppCompatActivity {
 
     private SignInClient oneTapClient;
     private BeginSignInRequest signUpRequest;
-
     private static final int REQ_ONE_TAP = 2;
     private boolean showOneTapUI = true;
 
@@ -51,6 +55,7 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
 
         SignInButton signInButton = findViewById(R.id.sign_in_button);
         signInButton.setSize(SignInButton.SIZE_STANDARD);
@@ -141,27 +146,54 @@ public class Login extends AppCompatActivity {
 
     private void validateEmailWithServer(String email) {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "https://trial.gssmp.org/MobileApp/Select.php?query=SELECT * FROM Students WHERE emailid='" + email + "'";
+        String url = "https://trial.gssmp.org/MobileApp/Select.php?query=SELECT emailid, medium, FirstName, LastName, SNo, Class, GroupID, MentorID, RegID FROM Students WHERE emailid='" + email + "'";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.e("TAG",response);
-                        if (response.contains(email)) {
+                        Log.d("Response", response); // Log the response here
+                        try {
+                            JSONArray jsonArray = new JSONArray(response);
+                            if (jsonArray.length() > 0) {
+                                JSONObject jsonObject = jsonArray.getJSONObject(0);
+                                String retrievedSNo = jsonObject.getString("SNo");
+                                String retrievedFirstName = jsonObject.getString("FirstName");
+                                String retrievedLastName = jsonObject.getString("LastName");
+                                String retrievedEmail = jsonObject.getString("emailid");
+                                String retrievedMedium = jsonObject.getString("medium");
+                                String retrievedClass = jsonObject.getString("Class");
+                                String retrievedGroupID = jsonObject.getString("GroupID");
+                                String retrievedMentorID = jsonObject.getString("MentorID");
+                                String retrievedRegID = jsonObject.getString("RegID");
 
-                            // Email exists in the database
-                            // Proceed to the second activity
-                            Intent intent = new Intent(Login.this, ProfileActivity.class);
-                            intent.putExtra("email", email); // Pass email as an extra
-                            startActivity(intent);
-                        } else {
-                            // Email does not exist in the database
-                            // Show an appropriate message or take further actions as needed
-                            showToast("Invalid Email ID");
-                            // You may want to prevent proceeding to the second activity here
-                            // For example, you can remove the startActivity line from here
-                            // Remove the following line
-                            // startActivity(new Intent(MainActivity.this, SecondActivity.class));
+                                DataManager.getInstance().setRetrievedSNo(retrievedSNo);
+                                DataManager.getInstance().setRetrievedFirstName(retrievedFirstName);
+                                DataManager.getInstance().setRetrievedLastName(retrievedLastName);
+                                DataManager.getInstance().setRetrievedEmail(retrievedEmail);
+                                DataManager.getInstance().setRetrievedMedium(retrievedMedium);
+                                DataManager.getInstance().setRetrievedClass(retrievedClass);
+                                DataManager.getInstance().setRetrievedGroupID(retrievedGroupID);
+                                DataManager.getInstance().setRetrievedMentorID(retrievedMentorID);
+                                DataManager.getInstance().setRetrievedRegID(retrievedRegID);
+
+
+
+                                // Check the retrieved medium and navigate accordingly
+                                if (retrievedMedium.equalsIgnoreCase("English")) {
+                                    startActivity(new Intent(Login.this, dashboard.class));
+                                } else if (retrievedMedium.equalsIgnoreCase("Tamil")) {
+                                    startActivity(new Intent(Login.this, tamildashboard.class));
+                                } else {
+                                    showToast("There is no meeting");
+                                }
+                            } else {
+                                // Handle the case where no data is returned
+                                showToast("No data found for the given email");
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            // Handle JSON parsing error
+                            showToast("Error parsing JSON response");
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -175,6 +207,7 @@ public class Login extends AppCompatActivity {
 
         queue.add(stringRequest);
     }
+
     private void showToast(String message) {
         Toast.makeText(Login.this, message, Toast.LENGTH_SHORT).show();
     }

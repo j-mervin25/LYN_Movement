@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Classrooms">
+    tools:context=".Attendance">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -15,11 +15,13 @@
 
         <ImageView
             android:id="@+id/imageView5"
-            android:layout_width="306dp"
-            android:layout_height="197dp"
+            android:layout_width="309dp"
+            android:layout_height="239dp"
+            android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="45dp"
-            android:src="@drawable/img_1" />
+            android:layout_marginStart="61dp"
+            android:layout_marginEnd="56dp"
+            android:src="@drawable/img_16" />
 
         <TextView
             android:id="@+id/textView"
@@ -32,7 +34,7 @@
             android:layout_marginTop="195dp"
             android:layout_marginEnd="0dp"
             android:padding="8dp"
-            android:text="Class Rooms"
+            android:text="Attendance"
             android:textColor="@android:color/white"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -66,7 +68,7 @@
                         android:layout_width="164dp"
                         android:layout_height="46dp"
                         android:layout_weight="1"
-                        android:text="Class Info:"
+                        android:text="Class :"
                         android:padding="8dp"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -98,7 +100,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Class Subject Name"
+                            android:text="ScheduleDate"
                             android:textStyle="bold"
                             android:padding="8dp"/>
 
@@ -108,12 +110,12 @@
                             android:layout_height="wrap_content"
                             android:padding="8dp"
                             android:textStyle="bold"
-                            android:text="Start Time" />
+                            android:text="ClassSubjectName" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="End Time"
+                            android:text="Status"
                             android:textStyle="bold"
                             android:padding="8dp"/>
 
@@ -134,6 +136,7 @@
         </ScrollView>
 
     </HorizontalScrollView>
+
 
 
 </LinearLayout>

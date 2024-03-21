@@ -5,6 +5,15 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -17,37 +26,52 @@
         android:theme="@style/Theme.LYN"
         tools:targetApi="31">
         <activity
-            android:name=".Classrooms"
+            android:name=".materialweb"
             android:exported="false" />
         <activity
-            android:name=".ProfileActivity"
+            android:name=".material"
             android:exported="false" />
         <activity
-            android:name=".Profile"
+            android:name=".youweb"
+            android:exported="false" />
+        <activity
+            android:name=".youtube"
+            android:exported="false" />
+        <activity
+            android:name=".Attendance"
+            android:exported="false" />
+        <activity
+            android:name=".ExamUpload"
+            android:exported="false" />
+        <activity
+            android:name=".OfflineWebview"
+            android:exported="false" />
+        <activity
+            android:name=".Offline"
+            android:exported="false" />
+        <activity
+            android:name=".OnlineWebview"
+            android:exported="false" />
+        <activity
+            android:name=".Online"
+            android:exported="false" />
+        <activity
+            android:name=".Mentors"
             android:exported="false" />
         <activity
             android:name=".tamildashboard"
             android:exported="false" />
         <activity
-            android:name=".liveclasses"
+            android:name=".Upload"
             android:exported="false" />
         <activity
-            android:name=".register"
+            android:name=".Assignment"
             android:exported="false" />
         <activity
-            android:name=".profile"
+            android:name=".Classrooms"
             android:exported="false" />
         <activity
-            android:name=".eleventhmeet"
-            android:exported="false" />
-        <activity
-            android:name=".tenthmeet"
-            android:exported="false" />
-        <activity
-            android:name=".classes"
-            android:exported="false" />
-        <activity
-            android:name=".meet"
+            android:name=".ProfileActivity"
             android:exported="false" />
         <activity
             android:name=".dashboard"

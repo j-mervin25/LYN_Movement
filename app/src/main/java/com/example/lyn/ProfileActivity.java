@@ -31,9 +31,10 @@ import android.graphics.Typeface;
 
 public class ProfileActivity extends AppCompatActivity {
     TextView t1;
-    private static final String PHP_SCRIPT_URL = "https://trial.gssmp.org/MobileApp/Select.php?query=SELECT * FROM Students";
+    private static final String PHP_SCRIPT_URL = "https://trial.gssmp.org/MobileApp/Select.php?query=select%20*%20from%20Students";
     private TextView t2, t3, t4, t5, t6, t7;
-    ImageButton b1,b2;
+    ImageButton b2;
+    String retrievedEmail;
 
     ImageView profileImageView;
     @Override
@@ -49,28 +50,21 @@ public class ProfileActivity extends AppCompatActivity {
         t6 = findViewById(R.id.textView5);
         t7 = findViewById(R.id.textView6);
 
-        b1 = findViewById(R.id.button1);
         b2 = findViewById(R.id.button2);
+
 
         profileImageView = findViewById(R.id.profileImageView);
 
-        String email = getIntent().getStringExtra("email");
+        retrievedEmail = DataManager.getInstance().getRetrievedEmail();
 
         // Set email to TextView
-        t1.setText(email);
+        t1.setText(retrievedEmail);
 
-        setProfileImage(email);
+        setProfileImage(retrievedEmail);
 
         FetchDataAsyncTask fetchDataAsyncTask = new FetchDataAsyncTask();
         fetchDataAsyncTask.execute();
 
-        b1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(ProfileActivity.this, SecondActivity.class);
-                startActivity(i);
-            }
-        });
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,9 +146,9 @@ public class ProfileActivity extends AppCompatActivity {
                     // Search for the email in the JSON array
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        String email = jsonObject.getString("emailid");
+                        String retrievedEmail = jsonObject.getString("emailid");
 
-                        if (emailToFind.equals(email)) {
+                        if (emailToFind.equals(retrievedEmail)) {
                             // Extract details from JSON object
                             String firstName = jsonObject.getString("FirstName");
                             String lastName = jsonObject.getString("LastName");
@@ -172,12 +166,6 @@ public class ProfileActivity extends AppCompatActivity {
                             t6.setText("SNo: " + sno);
                             t7.setText("Mentor ID: " + mentorID);
 
-
-                            DataManager.getInstance().setClassInfo(classInfo);
-                            DataManager.getInstance().setMedium(medium);
-
-                            Log.d("ProfileActivity", "Class Info: " + classInfo);
-                            Log.d("ProfileActivity", "Medium: " + medium);
                         }
                     }
                 } catch (JSONException e) {
